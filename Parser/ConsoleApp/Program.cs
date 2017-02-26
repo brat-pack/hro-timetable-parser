@@ -1,4 +1,5 @@
 ﻿using System;
+using Parser;
 
 namespace ConsoleApp
 {
@@ -6,7 +7,7 @@ namespace ConsoleApp
 	{
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			var x = new TimeTable("dix");
 		}
 	}
 }
