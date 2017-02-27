@@ -26,5 +26,10 @@ namespace Parser
 			Description = iEvent.Description;
 			Classroom = classroom;
 		}
+
+		public bool isHoliday()
+		{
+			return EndTime.Hour - StartTime.Hour == 14;
+		}
 	}
 }

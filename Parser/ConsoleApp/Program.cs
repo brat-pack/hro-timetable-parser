@@ -7,7 +7,7 @@ namespace ConsoleApp
 	{
 		public static void Main(string[] args)
 		{
-			var x = new TimeTable("dix");
+			var x = new TimeTable("http://hint.hro.nl/xsp/rooster/iCal.xsp/0912837-1879302.ics");
 		}
 	}
 }

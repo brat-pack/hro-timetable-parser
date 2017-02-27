@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Ical.Net;
 using Ical.Net.Interfaces;
+using System.Net;
 
 namespace Parser
 {
@@ -15,7 +16,9 @@ namespace Parser
 
 		public TimeTable(string icsUrl)
 		{
-			var ICalCollection = Calendar.LoadFromFile("/Users/Moro/Downloads/0912837-1433428.ics");
+			var request = WebRequest.Create(icsUrl);
+			var x = request.GetResponse();
+		 	var ICalCollection = Calendar.LoadFromStream(x.GetResponseStream());
 			var iCalCalendar = ICalCollection[0];
 			foreach (var iCalEvent in iCalCalendar.Events)
 			{
@@ -23,8 +26,11 @@ namespace Parser
 				{
 					var classroom = FindOrCreateClassroom(iCalEvent.Location);
 					var newEvent = new Event(iCalEvent, classroom);
-					classroom.Events.Add(newEvent);
-					Events.Add(newEvent);
+					if (!newEvent.isHoliday())
+					{
+						classroom.Events.Add(newEvent);
+						Events.Add(newEvent);
+					}
 				}
 			}
 		}
